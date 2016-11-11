@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>BMI Calculator</title>
     <meta charset="UTF-8">
@@ -7,10 +7,12 @@
         <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+   <!-- <link href="starter-template.css" rel="stylesheet"> -->
+
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-   <!-- <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }} -->
+   <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}>
 </head>
 <body>
         <!--BootStrap starter template -->
@@ -38,13 +40,27 @@
        <div class="container">
 
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h1>Body Mass Index</h1>
+        <p class="lead">Body Mass Index (BMI) is used to calculate body fat.<br>It's important to note your body fat as the higher the BMI, the greater the risk of some diseases.  </p>
          <!-- <h1>Welcome to my web App</h1>-->
         <p>It will be a BMI calculator</p>
       </div>
 
     </div><!-- /.container -->
+
+    <form>
+        <div class="container">
+            <div class="form-group">
+                <label for="formGroupExampleInput" >Height</label>
+                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Enter Height">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Weight</label>
+                <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Enter Weight">
+            </div>
+            <button type="button" class="btn btn-success">Calculate BMI</button>
+        </div>
+    </form>
 
 
 </body>
