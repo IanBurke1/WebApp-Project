@@ -7,4 +7,4 @@ The lecturer is [Ian McLoughlin](https://ianmcloughlin.github.io).
 
 ### Project overview
 I have created a single-Page Web Application (SPA) that lets users calculate their Body Mass Index (BMI).
-I created the web app using [Flask](http://flask.pocoo.org/) which is a microframework for Python.
+I created the web app using [Flask](http://flask.pocoo.org/) which is a microframework for [Python](https://www.python.org/).
