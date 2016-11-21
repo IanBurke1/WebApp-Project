@@ -3,19 +3,22 @@
 <head>
     <title>BMI Calculator</title>
     <meta charset="UTF-8">
-        <!--Bootstrap links -->
+
+        <!-- Bootstrap links -->
         <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-   <!-- <link href="starter-template.css" rel="stylesheet"> -->
-
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-   <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}>
+    <!-- I added a favicon. Tutorial on it from https://www.youtube.com/watch?v=YRzSxtcxVeo -->
+    <!-- Got the favicon from http://www.favicon.cc/?action=icon&file_id=514761 -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!-- Dynamic URL for the CSS file in static folder. Tutorial on it from legendary Bucky Roberts! https://www.youtube.com/watch?v=WxgYYGxoPwY -->
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}>
 </head>
 <body>
         <!--BootStrap starter template -->
+        <!-- Nav Bar at the top of page -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -25,43 +28,99 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">BMI Calculator</a>
         </div>
           <div id="navbar" class="collapse navbar-collapse">
              <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+        <!-- Bootstrap starter template. Heading and paragraph -->
+    <div class="container">
+        <div class="starter-template">
+            <h1>Body Mass Index</h1>
+            <p class="lead">Body Mass Index (BMI) is used to calculate body fat.<br>It's important to note your body fat as the higher the BMI, the greater the risk of some diseases.  </p>
+            <p>BMI calculator</p>
+        </div>
+    </div><!-- /.container -->
 
-       <div class="container">
+    <!-- Bootstrap form -->
+    <div class="container">
 
-      <div class="starter-template">
-        <h1>Body Mass Index</h1>
-        <p class="lead">Body Mass Index (BMI) is used to calculate body fat.<br>It's important to note your body fat as the higher the BMI, the greater the risk of some diseases.  </p>
-         <!-- <h1>Welcome to my web App</h1>-->
-        <p>It will be a BMI calculator</p>
-      </div>
+        <form method="POST" action="/bmiCalc">
+
+                <div class="form-group">
+                    <label for="height" >Height</label>
+                    <input type="text" name="height" class="form-control" id="height" placeholder="Enter Height">
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight</label>
+                    <input type="text" name="weight" class="form-control" id="weight" placeholder="Enter Weight">
+                </div>
+                     <button type="button" name="result" value="submit" onclick="calculateBmi()" class="btn btn-success">Calculate BMI</button>
+        </form>
 
     </div><!-- /.container -->
 
-    <form>
-        <div class="container">
-            <div class="form-group">
-                <label for="formGroupExampleInput" >Height</label>
-                <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Enter Height">
-            </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">Weight</label>
-                <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Enter Weight">
-            </div>
-            <button type="button" class="btn btn-success">Calculate BMI</button>
-        </div>
-    </form>
+    <div>
+       <!-- <h1>Your height is: {{ height }}</h1>
+        <h1>Your weight is: {{ weight }}</h1>
+        -->
+        <h1>Your bmi is: <span id="bmi"></span> </h1>
 
+       <!-- <p id="result"></p>
+        <p id="comment"></p>
+        -->
+    </div>
+    <div class="container">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" style="width:18%">
+            0 - 18.5
+          </div>
+          <div class="progress-bar progress-bar-info" role="progressbar" style="width:30%">
+            18.5 - 25
+          </div>
+          <div class="progress-bar progress-bar-warning" role="progressbar" style="width:35%">
+            25 - 30
+          </div>
+          <div class="progress-bar progress-bar-danger" role="progressbar" style="width:17%">
+            30 <
+          </div>
+
+        </div>
+            <h1>You are <span id="result"></span> </h1>
+    </div> <!-- /.container -->
 
 </body>
+    <script type="text/javascript">
+
+        function calculateBmi() {
+            //Accessing form elements using getElementById.
+            //Got notes on this from http://www.javascript-coder.com/javascript-form/getelementbyid-form.phtml
+            var height = document.getElementById('height').value;
+            var weight = document.getElementById('weight').value;
+
+            //BMI formula
+            var bmi = weight/(height*height);
+
+            //Got help on this from Stack Overflow http://stackoverflow.com/questions/21698044/basic-bmi-calculator-html-javascript
+            document.getElementById("bmi").innerHTML = Math.round(bmi*100)/100;
+
+
+            if(bmi <= 18.5)
+            {document.getElementById("result").innerHTML = "Underweight";}
+            else if(bmi <= 24.9 && bmi > 18.5)
+            {document.getElementById("result").innerHTML = "Normal";}
+            else if(bmi <= 29.9 && bmi >= 25)
+            {document.getElementById("result").innerHTML = "Overweight";}
+            else if(bmi >= 30)
+            {document.getElementById("result").innerHTML = "Obese";}
+
+            }
+
+    </script>
 </html>
