@@ -28,71 +28,85 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">BMI Calculator</a>
+          <a class="navbar-brand">BMI Calculator</a>
         </div>
           <div id="navbar" class="collapse navbar-collapse">
              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="about">About</a></li>
             </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+
         <!-- Bootstrap starter template. Heading and paragraph -->
     <div class="container">
         <div class="starter-template">
             <h1>Body Mass Index</h1>
             <p class="lead">Body Mass Index (BMI) is used to calculate body fat.<br>It's important to note your body fat as the higher the BMI, the greater the risk of some diseases.  </p>
-            <p>BMI calculator</p>
+            <p>Try it below</p>
         </div>
     </div><!-- /.container -->
 
     <!-- Bootstrap form -->
     <div class="container">
 
-        <form method="POST" action="/bmiCalc">
+        <form method="POST" action="{{ url_for('bmiCalc') }}">
 
                 <div class="form-group">
                     <label for="height" >Height</label>
-                    <input type="text" name="height" class="form-control" id="height" placeholder="Enter Height">
+                    <input type="text" name="height" class="form-control" id="height" placeholder="Enter Height (meters)">
                 </div>
                 <div class="form-group">
                     <label for="weight">Weight</label>
-                    <input type="text" name="weight" class="form-control" id="weight" placeholder="Enter Weight">
+                    <input type="text" name="weight" class="form-control" id="weight" placeholder="Enter Weight (kg)">
                 </div>
                      <button type="button" name="result" value="submit" onclick="calculateBmi()" class="btn btn-success">Calculate BMI</button>
+                    <button type="reset" value="reset" onclick="button_reset()" class="btn btn-default">Reset</button>
         </form>
 
     </div><!-- /.container -->
 
-    <div>
-       <!-- <h1>Your height is: {{ height }}</h1>
-        <h1>Your weight is: {{ weight }}</h1>
-        -->
-        <h1>Your bmi is: <span id="bmi"></span> </h1>
 
-       <!-- <p id="result"></p>
-        <p id="comment"></p>
-        -->
-    </div>
     <div class="container">
+        <div>
+           <!-- <h1>Your height is: {{ height }}</h1>
+            <h1>Your weight is: {{ weight }}</h1>
+            -->
+            <h1 align="center" id="bmi">Your bmi is: <br> </h1>
+
+           <!-- <p id="result"></p>
+            <p id="comment"></p>
+            -->
+        </div>
         <div class="progress">
           <div class="progress-bar progress-bar-success" role="progressbar" style="width:18%">
-            0 - 18.5
+            Underweight (0 - 18.5)
           </div>
           <div class="progress-bar progress-bar-info" role="progressbar" style="width:30%">
-            18.5 - 25
+            Normal (18.5 - 25)
           </div>
           <div class="progress-bar progress-bar-warning" role="progressbar" style="width:35%">
-            25 - 30
+            Overweight (25 - 30)
           </div>
           <div class="progress-bar progress-bar-danger" role="progressbar" style="width:17%">
-            30 <
+            Obese (30<)
           </div>
 
         </div>
-            <h1>You are <span id="result"></span> </h1>
+        <!-- <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th width="9%" class="success">Underweight</th>
+                <th width="15%" class="info">Normal</th>
+                <th width="17%" class="warning">Overweight</th>
+                <th width="9%" class="danger">Obese</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        -->
+           <h1 align="center"> <span id="result"></span>
     </div> <!-- /.container -->
 
 </body>
@@ -112,13 +126,17 @@
 
 
             if(bmi <= 18.5)
-            {document.getElementById("result").innerHTML = "Underweight";}
+            {document.getElementById("result").innerHTML = "You are underweight";}
             else if(bmi <= 24.9 && bmi > 18.5)
-            {document.getElementById("result").innerHTML = "Normal";}
+            {document.getElementById("result").innerHTML = "You are normal";}
             else if(bmi <= 29.9 && bmi >= 25)
-            {document.getElementById("result").innerHTML = "Overweight";}
+            {document.getElementById("result").innerHTML = "You are overweight";}
             else if(bmi >= 30)
-            {document.getElementById("result").innerHTML = "Obese";}
+            {document.getElementById("result").innerHTML = "You are obese";}
+
+            }
+            function button_reset() {
+
 
             }
 
