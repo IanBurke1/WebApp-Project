@@ -1,14 +1,23 @@
 from flask import Flask, render_template, request
-import sqlite3 as sql
+import couchdb
 
-#DATABASE = 'data/bmi.db' # Define the database
+
 
 app = Flask(__name__) #Pass in _name_ to help flask determine root path.
+
+couch = couchdb.Server('http://admin:password@127.0.0.1:5984/') # Gets a server 
+
+
+db = couch.create('bmi') # create new database
+
+doc = {'name': 'ian'}
+db.save(doc)
 
 #routing/mapping
 # @ signifies a decorator - way to wrap a function and modifying its behaviour
 @app.route('/') #connect a webpage. '/' is a root directory.
 def homepage():
+
     return render_template("homepage.html") #when user goes to this page return this..
 
 @app.route('/bmiCalc', methods=['GET','POST'])
