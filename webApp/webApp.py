@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, json, url_for
 import couchdb
 
 
@@ -8,7 +8,7 @@ app = Flask(__name__) #Pass in _name_ to help flask determine root path.
 couch = couchdb.Server('http://admin:password@127.0.0.1:5984/') # Gets the server
 
 #db = couch('bmi') # create new database
-db = couch['bmi'] #existing database
+db = couch['user_input'] #existing database
 
 #doc = {'name': 'ian'} # Creating a doc
 #db.save(doc) # Saving it to database
@@ -26,11 +26,8 @@ def bmiCalc():
         height = request.form['height']
         weight = request.form['weight']
 
-        couch = couchdb.Server('http://admin:password@127.0.0.1:5984/_all_dbs')
-        db = couch['bmi']
-        doc = {id: height}
-        doc.save(doc)
-        # for id in db:
+        jsonData = {"Height" : "aaaa"}
+        request.post('http://127.0.0.1:5984/user_input/',data=None, json=jsonData)
 
         return render_template('homepage.html')
 
