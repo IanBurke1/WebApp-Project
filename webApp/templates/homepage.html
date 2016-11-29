@@ -28,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">BMI Calculator</a>
+            <a class="navbar-brand" href="/">BMI Calculator</a>
         </div>
           <div id="navbar" class="collapse navbar-collapse">
              <ul class="nav navbar-nav">
@@ -49,7 +49,7 @@
 
     <!-- Bootstrap form -->
     <div class="container">
-        <form method="POST" action="{{ url_for('bmiCalc') }}">
+        <form method="POST" action="{{ url_for('userInput') }}">
 
                 <div class="form-group">
                     <label for="height" >Height</label>
@@ -73,8 +73,9 @@
             -->
             <h1 align="center">Your bmi is: <span id="bmi"> </span> </h1>
 
-        </div>
-        <div class="progress">
+         </div>
+            <!-- Bootstrap stacked progress bar -->
+         <div class="progress">
           <div class="progress-bar progress-bar-info" role="progressbar" style="width:18%">
             Underweight (0 - 18.5)
           </div>
@@ -89,7 +90,7 @@
           </div>
 
         </div>
-
+        <!-- User Result -->
        <h1 align="center"> <span id="result_under"></span></h1>
        <h1 align="center" style="color: green"> <span id="result_normal"></span></h1>
        <h1 align="center" style="color: orange"> <span id="result_over"></span></h1>
@@ -111,7 +112,6 @@
             //Got help on this from Stack Overflow http://stackoverflow.com/questions/21698044/basic-bmi-calculator-html-javascript
             document.getElementById("bmi").innerHTML = Math.round(bmi*100)/100;
 
-
             if(bmi <= 18.5)
             {document.getElementById("result_under").innerHTML = "You are underweight";}
             else if(bmi <= 24.9 && bmi > 18.5)
@@ -122,9 +122,10 @@
             {document.getElementById("result_obese").innerHTML = "You are obese";}
 
             }
+            //Reset button 
             function button_reset() {
 
-                 document.getElementById("bmi").innerHTML = null;
+                document.getElementById("bmi").innerHTML = null;
                 document.getElementById("result_under").innerHTML = null;
                 document.getElementById("result_normal").innerHTML = null;
                 document.getElementById("result_over").innerHTML = null;
