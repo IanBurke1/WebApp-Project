@@ -25,7 +25,7 @@ Once I got the server up and running using Flask, the next step was HTML and des
 I had to use javascript to do the math and calculate the BMI and return the result. I encountered a few problems with javascript such as getting html elements and returning elements. I found a solution on Stack Overflow which was very helpful:  http://stackoverflow.com/questions/21698044/basic-bmi-calculator-html-javascript. After I got the calculation working, I then cleaned up the webpage to make it look neat. 
 
 ####Database
-The next problem was adding a database. I tryed a few open sourced database programs such as [SQLite](https://sqlite.org/), [MongoDB](https://www.mongodb.com/) and [CouchDB](http://couchdb.apache.org/). I couldn't quite get to grips with any of them. It was hard to find any good tutorials on them using flask. I ended up choosing CouchDB and stuck at it. My classmate Andrew, shared a very good link to documentation on using couchdb with python: https://pythonhosted.org/CouchDB/getting-started.html. This got me started and eventually I got a database up and running. The next thing I wanted to incorpeate was getting the user input from the form and storing it into the database. I'm still having problems with it.
+The next problem was adding a database. I tryed a few open sourced database programs such as [SQLite](https://sqlite.org/), [MongoDB](https://www.mongodb.com/) and [CouchDB](http://couchdb.apache.org/). I couldn't quite get to grips with any of them. It was hard to find any good tutorials on them using flask. I ended up choosing CouchDB and stuck at it. My classmate Andrew, shared a very good link to documentation on using couchdb with python: https://pythonhosted.org/CouchDB/getting-started.html. This got me started and eventually I got a database up and running. The next thing I wanted to incorpeate was getting the user input from the form and storing it into the database.
 
 ### Curl 
 Download [Curl](https://curl.haxx.se/). Enter the curl command below to issue a GET request to your Couchdb :
@@ -52,11 +52,13 @@ $ curl -X GET http://127.0.0.1:5984/test
 ```bash
 $ pip install couchdb
 ```
-* Run setupDB.py
+* To run the application, open up command prompt (CMD) or CMDER.
+
+Run setupDB.py
 ```bash
 $ python setupDB.py
 ```
-* To run the application, open up command prompt (CMD) or CMDER and enter:
+* To run the app:
 ```bash
 $ python webApp.py
 ```
