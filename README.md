@@ -27,14 +27,8 @@ I had to use javascript to do the math and calculate the BMI and return the resu
 ####Database
 The next problem was adding a database. I tryed a few open sourced database programs such as [SQLite](https://sqlite.org/), [MongoDB](https://www.mongodb.com/) and [CouchDB](http://couchdb.apache.org/). I couldn't quite get to grips with any of them. It was hard to find any good tutorials on them using flask. I ended up choosing CouchDB and stuck at it. My classmate Andrew, shared a very good link to documentation on using couchdb with python: https://pythonhosted.org/CouchDB/getting-started.html. This got me started and eventually I got a database up and running. The next thing I wanted to incorpeate was getting the user input from the form and storing it into the database. I'm still having problems with it.
 
-### How to run the application
-You must install [Python](https://www.python.org/) and [Flask](http://flask.pocoo.org/) first to run the project.
-
-Download and install [CouchDB](http://couchdb.apache.org/) and also install python-couchdb package:
-```bash
-$ pip install couchdb
-```
-Download [Curl](https://curl.haxx.se/) to access and transfer data. Enter the curl command below to issue a GET request to your Couchdb :
+### Curl 
+Download [Curl](https://curl.haxx.se/). Enter the curl command below to issue a GET request to your Couchdb :
 ```bash
 $ curl http://127.0.0.1:5984/
 ```
@@ -42,18 +36,37 @@ Get a list of databases:
 ```bash
 $ curl -X GET http://127.0.0.1:5984/_all_dbs
 ```
-To run the application, open up command prompt (CMD) or CMDER and enter:
+Create a database:
+```bash
+$ curl -X PUT http://127.0.0.1:5984/test
+```
+Get the database created:
+```bash
+$ curl -X GET http://127.0.0.1:5984/test
+```
+
+### How to run the application
+* You must install [Python](https://www.python.org/) and [Flask](http://flask.pocoo.org/) first to run the project.
+
+* Download and install [CouchDB](http://couchdb.apache.org/) and also install python-couchdb package:
+```bash
+$ pip install couchdb
+```
+* Run setupDB.py
+```bash
+$ python setupDB.py
+```
+* To run the application, open up command prompt (CMD) or CMDER and enter:
 ```bash
 $ python webApp.py
 ```
 
+* Once the application is running, it can be accessed by pointing your browser at http://127.0.0.1:5000/ .
 
-Once the application is running, it can be accessed by pointing your browser at http://127.0.0.1:5000/ .
-
-Vauxton is a visual guide for CouchDB. Enter URL below:
+* Vauxton is a visual guide for CouchDB. Enter URL below:
 http://127.0.0.1:5984/_utils/
 
 
 
 ### Architecture
-This web application runs in [Python 3](https://www.python.org/) using [Flask](http://flask.pocoo.org/) web micro-framework and uses a open source database [CouchDB](http://couchdb.apache.org/). It uses a [Bootstrap](http://getbootstrap.com/) starter-template including a nav-bar, form and stacked progress bar. 
+This web application runs in [Python 3](https://www.python.org/) using [Flask](http://flask.pocoo.org/) web micro-framework and uses a open source database [CouchDB](http://couchdb.apache.org/). It uses a [Bootstrap](http://getbootstrap.com/) starter-template including a nav-bar, form and stacked progress bar. [Curl](https://curl.haxx.se/) is used in command lines and scripts to transfer data.
