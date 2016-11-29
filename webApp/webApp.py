@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, json, url_for
+from flask import Flask, render_template, request, json
 import couchdb
 
 
@@ -7,11 +7,8 @@ app = Flask(__name__) #Pass in _name_ to help flask determine root path.
 
 couch = couchdb.Server('http://admin:password@127.0.0.1:5984/') # Gets the server
 
-#db = couch('bmi') # create new database
 db = couch['user_input'] #existing database
 
-#doc = {'name': 'ian'} # Creating a doc
-#db.save(doc) # Saving it to database
 
 #routing/mapping
 # @ signifies a decorator - way to wrap a function and modifying its behaviour
@@ -20,14 +17,14 @@ def homepage():
 
     return render_template("homepage.html") #when user goes to this page return this..
 
-@app.route('/bmiCalc', methods=['GET','POST']) #Getting info from webpage through POST
-def bmiCalc():
+@app.route('/userInput', methods=['GET','POST']) #Getting info from webpage through POST
+def userInput():
     if request.method == 'POST':
-        height = request.form['height']
-        weight = request.form['weight']
+        height = request.form['height'] #users height
+        weight = request.form['weight'] #users weight
 
-        jsonData = {"Height" : "aaaa"}
-        request.post('http://127.0.0.1:5984/user_input/',data=None, json=jsonData)
+       # jsonData = {'Height': height} #Trying to pass in users height and weight. 
+        #request.post('http://127.0.0.1:5984/user_input/', data=None, json=jsonData)
 
         return render_template('homepage.html')
 
